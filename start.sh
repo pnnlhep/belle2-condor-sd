@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
 # Setup DIRAC SiteDirector for condor
-iptables -I INPUT -p tcp --dport 9130:9200 -j ACCEPT
-service iptables save
+#iptables -I INPUT -p tcp --dport 9130:9200 -j ACCEPT
+#service iptables save
 
 # Make sure the DIRAC master server has a nagent name
 if [ "x$SiteDirectorName" = "x" ]; then
