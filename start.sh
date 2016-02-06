@@ -26,8 +26,10 @@ wget -np https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/install
 chmod +x install_site.sh
 chown -R belle:belle /srv/dirac
 echo "Starting DIRAC install_site.sh..."
-su - belle -c /srv/dirac/install_site.sh /srv/dirac/pnnl_dirac.cfg
+ls /home/
+su - belle -c /srv/dirac/install_site.sh -ddd /srv/dirac/pnnl_dirac.cfg
 eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
+echo ${SITE_DIRECTOR_NAME}
 dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
 
 # Setup CONDOR client
