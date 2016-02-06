@@ -11,11 +11,14 @@ if [ "x$SiteDirectorName" = "x" ]; then
 fi
 
 DIRAC_BASE_PATH=/opt/dirac/
-mkdir -p ${DIRAC_BASE_PATH}/etc/grid-security/
-ln -s /etc/grid-security/certificates  ${DIRAC_BASE_PATH}/etc/grid-security/certificates
-cp /etc/grid-security/hostcert.pem ${DIRAC_BASE_PATH}/etc/grid-security
-cp /etc/grid-security/hostkey.pem ${DIRAC_BASE_PATH}/etc/grid-security
+mkdir -p ${DIRAC_BASE_PATH}
+echo ${DIRAC_BASE_PATH}
+#mkdir -p ${DIRAC_BASE_PATH}/etc/grid-security
+#ln -s /etc/grid-security/certificates  ${DIRAC_BASE_PATH}/etc/grid-security/certificates
+#cp /etc/grid-security/hostcert.pem ${DIRAC_BASE_PATH}/etc/grid-security
+#cp /etc/grid-security/hostkey.pem ${DIRAC_BASE_PATH}/etc/grid-security
 chown -R belle:belle ${DIRAC_BASE_PATH}
+ls -lrt /etc/grid-security
 
 mkdir -p /srv/dirac
 cd /srv/dirac
@@ -24,7 +27,7 @@ chmod +x install_site.sh
 chown -R belle:belle /srv/dirac
 su belle /srv/dirac/install_site.sh /srv/dirac/pnnl_dirac.cfg
 eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
-dirac-install-agent WorkloadManagement SITE_DIRECTOR_NAME -ddd
+dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
 
 # Setup CONDOR client
 . /etc/sysconfig/condor
