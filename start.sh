@@ -22,7 +22,7 @@ cd /srv/dirac
 wget -np https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/install_site.sh --no-check-certificate
 chmod +x install_site.sh
 chown -R belle:belle /srv/dirac
-sudo -u belle ./install_site.sh pnnl_dirac.cfg
+su belle /srv/dirac/install_site.sh /srv/dirac/pnnl_dirac.cfg
 eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
 dirac-install-agent WorkloadManagement SITE_DIRECTOR_NAME -ddd
 
