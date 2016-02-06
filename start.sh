@@ -18,7 +18,7 @@ echo ${DIRAC_BASE_PATH}
 #cp /etc/grid-security/hostcert.pem ${DIRAC_BASE_PATH}/etc/grid-security
 #cp /etc/grid-security/hostkey.pem ${DIRAC_BASE_PATH}/etc/grid-security
 chown -R belle:belle ${DIRAC_BASE_PATH}
-ls -lrt /etc/grid-security
+ls -lrt /opt/dirac/etc/grid-security
 
 mkdir -p /srv/dirac
 cd /srv/dirac
