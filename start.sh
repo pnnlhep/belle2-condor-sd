@@ -27,10 +27,10 @@ chmod +x install_site.sh
 chown -R belle:belle /srv/dirac
 echo "Starting DIRAC install_site.sh..."
 ls /home/
-su - belle -c /srv/dirac/install_site.sh -ddd /srv/dirac/pnnl_dirac.cfg
-eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
-echo ${SITE_DIRECTOR_NAME}
-dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
+su - belle -c /bin/bash -c "/srv/dirac/install_site.sh -ddd /srv/dirac/dirac_condor_sitedirector.cfg"
+#eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
+#echo ${SITE_DIRECTOR_NAME}
+#dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
 
 # Setup CONDOR client
 . /etc/sysconfig/condor
