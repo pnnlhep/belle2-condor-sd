@@ -5,10 +5,10 @@
 #service iptables save
 
 # Make sure the DIRAC master server has a nagent name
-if [ "x$SiteDirectorName" = "x" ]; then
-    echo You must specify SiteDirectorName
-    exit -1
-fi
+#if [ "x$SiteDirectorName" = "x" ]; then
+#    echo You must specify SiteDirectorName
+#    exit -1
+#fi
 
 DIRAC_BASE_PATH=/opt/dirac/
 mkdir -p ${DIRAC_BASE_PATH}
