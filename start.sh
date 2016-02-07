@@ -32,6 +32,7 @@ su - belle -c /bin/bash -c "/srv/dirac/install_site.sh -ddd /srv/dirac/dirac_con
 #eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
 #echo ${SITE_DIRECTOR_NAME}
 #dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
+su - belle -c "source /opt/dirac/bashrc;dirac-install-agent WorkloadManagement SiteDirectorPNNL00 -c y " 
 rm -rf /srv/dirac/install_site.sh
 # Setup CONDOR client
 echo "Starting condor client..."
