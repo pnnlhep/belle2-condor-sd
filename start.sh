@@ -19,7 +19,7 @@ echo ${DIRAC_BASE_PATH}
 #cp /etc/grid-security/hostkey.pem ${DIRAC_BASE_PATH}/etc/grid-security
 chown -R belle:belle ${DIRAC_BASE_PATH}
 ls -lrt /opt/dirac/etc/grid-security
-
+openssl x509 -in ${DIRAC_BASE_PATH}/etc/grid-security/hostkey.pem -noout -subject
 mkdir -p /srv/dirac
 cd /srv/dirac
 wget -np https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/install_site.sh --no-check-certificate
@@ -32,7 +32,7 @@ su - belle -c /bin/bash -c "/srv/dirac/install_site.sh -ddd /srv/dirac/dirac_con
 #eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
 #echo ${SITE_DIRECTOR_NAME}
 #dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
-
+rm -rf /srv/dirac/install_site.sh
 # Setup CONDOR client
 echo "Starting condor client..."
 . /etc/sysconfig/condor
