@@ -1,15 +1,12 @@
 #!/bin/bash -e
 
-# Setup DIRAC SiteDirector for condor
-#iptables -I INPUT -p tcp --dport 9130:9200 -j ACCEPT
-#service iptables save
-
 # Make sure the DIRAC master server has a nagent name
-#if [ "x$SiteDirectorName" = "x" ]; then
-#    echo You must specify SiteDirectorName
-#    exit -1
-#fi
-
+if [ "x$SiteDirectorName" = "x" ]; then
+    echo You must specify SiteDirectorName
+    exit -1
+fi
+eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
+echo ${SITE_DIRECTOR_NAME}
 DIRAC_BASE_PATH=/opt/dirac_belle2
 mkdir -p ${DIRAC_BASE_PATH}
 echo ${DIRAC_BASE_PATH}
@@ -26,13 +23,10 @@ wget -np https://github.com/DIRACGrid/DIRAC/raw/integration/Core/scripts/install
 chmod +x install_site.sh
 chown -R belle:belle /srv/dirac
 echo "Starting DIRAC install_site.sh..."
-ls /home/
-id belle
 su - belle -c /bin/bash -c "/srv/dirac/install_site.sh -ddd /srv/dirac/dirac_condor_sitedirector.cfg"
-#eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
-#echo ${SITE_DIRECTOR_NAME}
-#dirac-install-agent WorkloadManagement ${SITE_DIRECTOR_NAME} -ddd
-su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-agent WorkloadManagement SiteDirectorPNNL00 -c y " 
+su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-agent WorkloadManagement '${SITE_DIRECTOR_NAME}' -c y " 
+su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-agent WorkloadManagement CountPilotSubmission -c y"
+su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-service RequestManagement ReqProxy -c -y"
 rm -rf /srv/dirac/install_site.sh
 # Setup CONDOR client
 echo "Starting condor client..."
