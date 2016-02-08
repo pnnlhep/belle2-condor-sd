@@ -28,7 +28,7 @@ echo "Starting DIRAC install_site.sh..."
 su - belle -c /bin/bash -c "/srv/dirac/install_site.sh -ddd /srv/dirac/dirac_condor_sitedirector.cfg"
 su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-agent WorkloadManagement '${SITE_DIRECTOR_NAME}' -c y " 
 su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-agent WorkloadManagement CountPilotSubmission -c y"
-su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-service RequestManagement ReqProxy -c -y"
+su - belle -c "source /opt/dirac_belle2/bashrc;dirac-install-service RequestManagement ReqProxy -c y"
 rm -rf /srv/dirac/install_site.sh
 # Setup CONDOR client
 echo "Starting condor client..."
