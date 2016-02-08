@@ -5,7 +5,9 @@ if [ "x$SiteDirectorName" = "x" ]; then
     echo You must specify SiteDirectorName
     exit -1
 fi
-eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
+echo "From docker env:" ${SiteDirectorName}
+SITE_DIRECTOR_NAME=${SiteDirectorName}
+#eval SITE_DIRECTOR_NAME=\$$SiteDirectorName
 echo ${SITE_DIRECTOR_NAME}
 DIRAC_BASE_PATH=/opt/dirac_belle2
 mkdir -p ${DIRAC_BASE_PATH}
